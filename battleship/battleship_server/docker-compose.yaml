@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:14.1
+    ports:
+      - '8090:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: battleship
+      POSTGRES_PASSWORD: "0wARdGX2NbvZV6bQIg8JZ5JOZp-_qgrk"
+    volumes:
+      - battleship_data:/var/lib/postgresql/data
+  redis:
+    image: redis:6.2.6
+    ports:
+      - '8091:6379'
+    command: redis-server --requirepass "PAy8-QF6WPoXhhmIC1tFma0UiGaiX27Y"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+volumes:
+  battleship_data:

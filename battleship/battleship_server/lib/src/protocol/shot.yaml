@@ -1,0 +1,6 @@
+class: Shot
+fields:
+  x: int
+  y: int
+  shooterId: String
+  hit: bool

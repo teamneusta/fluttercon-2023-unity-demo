@@ -1,0 +1,3 @@
+class: ErrorMessage
+fields:
+  message: String

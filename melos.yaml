@@ -1,0 +1,53 @@
+name: battleship
+
+sdkPath: .fvm/flutter_sdk
+
+packages:
+  - battleship/**
+
+scripts:
+  flutter:pub_get:
+    description: Run flutter pub get
+    run: melos exec -c 1 -- fvm flutter pub get
+
+  flutter:build_runner:
+    description: Run the build runner in all packages that require it.
+    run: melos exec -c 1 --depends-on="build_runner" -- fvm flutter pub run build_runner build --delete-conflicting-outputs
+
+  dart:format:
+    description: Runs the formatter in all packages.
+    run: melos exec -c 1 -- fvm dart format lib
+
+  dart:fix:
+    description: Fixes all dart lints.
+    run: melos exec -c 1 -- fvm dart fix --apply
+
+  flutter:clean:
+    description: Runs flutter clean in all packages.
+    run: melos exec -c 1 -- fvm flutter clean
+
+  unity:android:
+    description: Export unity project for android
+    run: melos exec -c 1 -- /Applications/Unity/Hub/Editor/2022.1.20f1/Unity.app/Contents/MacOS/Unity -projectPath ../../packages/finder_unity/unity/arfoundation-densepointcloud -executeMethod FlutterUnityIntegration.Editor.Build.DoBuildAndroidLibraryRelease -logFile - -batchmode -silent-crashes -quit -buildTarget Android -stackTraceLogType "Script Only"
+    packageFilters:
+      scope:
+        - "*finder_unity*"
+  unity:ios:
+    description: Export unity project for ios
+    run: melos exec -c 1  -- /Applications/Unity/Hub/Editor/2022.1.20f1/Unity.app/Contents/MacOS/Unity -projectPath unity/fluttercon-2023-unity-demo -executeMethod FlutterUnityIntegration.Editor.Build.DoBuildIOSRelease -logFile - -batchmode -silent-crashes -quit -buildTarget iOS -stackTraceLogType "Script Only"
+    packageFilters:
+      scope:
+        - "*battleship_ar_flutter*"
+  unity:activate_license:
+    description: Activate unity license. For CI/CD.
+    run: melos exec -c 1 -- /Applications/Unity/Hub/Editor/2022.1.20f1/Unity.app/Contents/MacOS/Unity -logFile - -batchmode -silent-crashes -quit -stackTraceLogType "Script Only" -username $UNITY_USERNAME -password $UNITY_PASSWORD -serial $UNITY_SERIAL
+    packageFilters:
+      scope:
+        - "*finder_unity*"
+
+  unity:return_license:
+    description: Return unity license. For CI/CD.
+    run: melos exec -c 1 -- /Applications/Unity/Hub/Editor/2022.1.20f1/Unity.app/Contents/MacOS/Unity -logFile - -batchmode -silent-crashes -quit -stackTraceLogType "Script Only" -returnlicense -username $UNITY_USERNAME -password $UNITY_PASSWORD
+    packageFilters:
+      scope:
+        - "*finder_unity*"

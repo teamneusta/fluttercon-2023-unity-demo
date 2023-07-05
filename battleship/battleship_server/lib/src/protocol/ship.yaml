@@ -1,0 +1,8 @@
+class: Ship
+fields:
+  name: String
+  ownerId: String
+  size: int
+  x: int
+  y: int
+  directionAsInt: int

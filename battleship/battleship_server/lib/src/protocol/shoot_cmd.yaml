@@ -1,0 +1,6 @@
+class: ShootCommand
+fields:
+  pin: String
+  shooterId: String
+  x: int
+  y: int

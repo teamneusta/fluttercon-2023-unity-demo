@@ -1,0 +1,4 @@
+class: JoinGameCommand
+fields:
+  pin: String
+  player: Player

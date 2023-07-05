@@ -1,0 +1,3 @@
+class: LobbyState
+fields:
+  activeGames: List<GameState>

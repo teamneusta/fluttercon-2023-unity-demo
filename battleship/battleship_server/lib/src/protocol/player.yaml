@@ -1,0 +1,4 @@
+class: Player
+fields:
+  name: String
+  id: String

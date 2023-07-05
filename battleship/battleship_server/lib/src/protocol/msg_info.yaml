@@ -1,0 +1,3 @@
+class: InfoMessage
+fields:
+  message: String

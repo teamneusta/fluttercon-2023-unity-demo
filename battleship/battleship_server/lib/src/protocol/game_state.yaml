@@ -1,0 +1,10 @@
+class: GameState
+fields:
+  pin: String
+  width: int
+  height: int
+  players: List<Player>
+  ships: List<Ship>
+  shots: List<Shot>
+  currentPlayerId: String?
+  winnerId: String?

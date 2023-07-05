@@ -1,0 +1,4 @@
+class: NewGameCommand
+fields:
+  pin: String
+  player: Player
